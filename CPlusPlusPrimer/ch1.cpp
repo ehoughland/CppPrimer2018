@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include "Sales_item.h"
 
 //using namespace std;
 
@@ -124,13 +125,12 @@ void PrintNumbersBetween()
 	std::cout << std::endl;
 }
 
-std::string global_str;	
-int global_int;
-
 //Variable initialization
 void InitializationTest()
 {
-	int local_int;
+	std::string global_str;	
+	int global_int = 0;
+	int local_int = 0;
 	std::string local_str;
 
 	std::cout << "global string: " << global_str << std::endl;
@@ -140,7 +140,145 @@ void InitializationTest()
 	std::cout << "local string: " << local_str << std::endl;
 }
 
-//Exercise 1.12- 
+//Exercise 1.12 - It sums the numbers from -100 to 100. The final value is 0.
+
+//Exercise 1.13 part 1
+void PrintNumbers10To0ForLoop()
+{
+	for (int i = 10; i > 0; --i)
+	{
+		std::cout << i << std::endl;
+	}
+}
+
+//Exercise 1.13 part 2
+void SumNumbersFrom50To100ForLoop()
+{
+	int total = 0;
+	
+	for (int i = 50; i <= 100; ++i)
+	{
+		total += i;
+	}
+
+	std::cout << "The sum of the numbers from 50 to 100 inclusive is: " << total << std::endl;
+}
+
+//Exercise 1.14 - for loops have variables with only local visibility, and are automatically "managed" by the statement. while loops can be simpler to write and read than for loops.
+
+//Exercise 1.15 part 1
+//int SyntaxErrors(
+//{
+//	std::cout << "Read each file." << std::endl:
+//	std::cout << Update master. << std::endl;
+//	std::cout << "Write new master." std::endl;
+//
+//	return 0
+//}
+
+//Exercise 1.15 part 2
+void TypeErrors(int a)
+{
+	std::cout << a;
+}
+
+//Exercise 1.15 part 3
+void DeclarationErrors()
+{
+	//std::cout << doesNotExist;
+	//cout << "Exists but doesn't use std::";
+}
+
+//Exercise 1.16
+void PrintSumOfInputs()
+{
+	int curr = 0;
+	int sum = 0;
+
+	while (std::cin >> curr)
+	{
+		sum += curr;
+	}
+
+	std::cout << "The sum of your inputs is: " << sum << std::endl;
+}
+
+//Exercise 1.17 - if the input values are all equal, it would execute normally. if there were no repeats, it would execute normally.
+
+//Exercise 1.18 - nah.
+
+//Exercise 1.19 - already handled that in exercise 1.11
+
+//Exercise 1.20
+void ReadBookSales()
+{
+	Sales_item item1, item2, item3;
+
+	std::cout << "Enter the first sales item: ";
+	std::cin >> item1;
+	std::cout << "Enter the second sales item: ";
+	std::cin >> item2;
+	std::cout << "Enter the third sales item: ";
+	std::cin >> item3;
+
+	std::cout << "Totals: " << std::endl << item1 << std::endl << item2 << std::endl << item3 << std::endl;
+}
+
+//Exercise 1.21
+int AddTwoBooks()
+{
+	Sales_item item1, item2;
+
+	std::cout << "Enter the first sales item: ";
+	std::cin >> item1;
+	std::cout << "Enter the second sales item: ";
+	std::cin >> item2;
+
+	if (item1.isbn() == item2.isbn())
+	{
+		std::cout << "The sum of the two books you entered is: " << item1 + item2;
+		return 0;
+	}
+	else
+	{
+		std::cerr << "ERROR: The two books you entered do not have the same ISBN.";
+		return -1;
+	}
+}
+
+//Exercise 1.22
+int ReadSalesItemsAndSum()
+{
+	Sales_item total;
+
+	if (std::cin >> total)
+	{
+		Sales_item trans;
+
+		while (std::cin >> trans)
+		{
+			if (trans.isbn() == total.isbn())
+			{
+				total += trans;
+			}
+			else
+			{
+				std::cout << "Total for book: " << total << std::endl;
+				total = trans;
+			}
+		}
+
+		std::cout << "Total for book: " << total << std::endl;
+	}
+	else
+	{
+		std::cerr << "No data?!" << std::endl;
+		return -1;
+	}
+
+	return 0;
+}
+
 
 int main()
 {
@@ -151,6 +289,15 @@ int main()
 	//SumNumbersFrom50To100();
 	//PrintNumbersFrom10To0();
 	//PrintNumbersBetween();
+	//PrintNumbers10To0ForLoop();
+	//SumNumbersFrom50To100ForLoop();
+	//TypeErrors("this will fail");
+	//PrintSumOfInputs();
+	//ReadBookSales();
+	//AddTwoBooks();
+
+	std::string tempStr;
+	std::cin >> tempStr;
 
     return 0;
 }
