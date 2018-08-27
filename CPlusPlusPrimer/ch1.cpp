@@ -1,7 +1,7 @@
 // CPlusPlusPrimer.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 #include <string>
 #include "Sales_item.h"
@@ -279,6 +279,40 @@ int ReadSalesItemsAndSum()
 	return 0;
 }
 
+//Exercise 1.23 & 1.24
+int ReadAndCountTransactions()
+{
+	Sales_item prevItem, currItem;
+	int transCount = 0;
+
+	if(std::cin >> prevItem)
+	{
+		transCount = 1;
+
+		while (std::cin >> currItem)
+		{
+			if (currItem.isbn() == prevItem.isbn())
+			{
+				++transCount;
+			}
+			else
+			{
+				std::cout << "Total transactions for ISBN " << prevItem.isbn() << ": " << transCount << std::endl;
+				prevItem = currItem;
+				transCount = 1;
+			}
+		}
+
+		std::cout << "Total transactions for ISBN " << prevItem.isbn() << ": " << transCount << std::endl;
+	}
+	else
+	{
+		std::cerr << "No data?!" << std::endl;
+		return -1;
+	}
+
+	return 0;
+}
 
 int main()
 {
@@ -295,9 +329,7 @@ int main()
 	//PrintSumOfInputs();
 	//ReadBookSales();
 	//AddTwoBooks();
-
-	std::string tempStr;
-	std::cin >> tempStr;
+	//ReadAndCountTransactions();
 
     return 0;
 }

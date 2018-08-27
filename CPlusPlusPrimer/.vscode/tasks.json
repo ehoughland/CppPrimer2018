@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build CPP Primer Ch 2",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g", "ch2.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
