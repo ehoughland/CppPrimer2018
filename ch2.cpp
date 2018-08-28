@@ -115,7 +115,34 @@ void PointerBasics()
 
 	*p = 30; //sets j = 30
 	std::cout << "Changed value to which p points to (j): " << j << std::endl;
+}
 
+//Exercise 2.19 A pointer is an object, references are not. Pointers do not need to be initialized when defined.
+//Pointers can point to many different objects over their lifetime.
+
+//Exercise 2.20 Declares i as an integer equal to 42. Then declares pointer p1 and initializes it to the addresss of i
+//then sets i = i * i which makes i equal to 42 * 42 (1764)
+
+//Exercise 2.21 a is illegal because you can't assign a integer reference to a double pointer. b is illegal because
+//you can't assign an integer pointer to an integer. c is legal.
+
+//Excercise 2.22 if (p) will always succeed because it is a location in memory. if (*p) may not succeed because it might
+//point to an integer that has a value of 0.
+
+void PointersAndBools()
+{
+	int p = 10;
+
+	int *p = &p;
+
+	if(p)
+	{
+		std::cout << "true";
+	}
+	else
+	{
+		std::cout << "false";
+	}
 }
 
 int main()
@@ -125,7 +152,8 @@ int main()
 	//OctalEscapes();
 	//EscapeSequences();
 	//Scopes();
-	PointerBasics();
+	//PointerBasics();
+	PointersAndBools();
 
 	return 0;
 }
